@@ -92,8 +92,8 @@
             modal.css({'visibility': 'hidden', 'top': topMeasure});
             modalBg.css({'display': 'none'});
           }
+          modal.unbind('reveal:close', closeAnimation);
         }
-        modal.unbind('reveal:close', closeAnimation);
       }
       modal.bind('reveal:close', closeAnimation);
       modal.trigger('reveal:open');
