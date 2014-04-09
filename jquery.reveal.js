@@ -16,10 +16,11 @@
 
   $.fn.reveal = function (options) {
     var defaults = {
-      animation: 'fadeAndPop',                // fade, fadeAndPop, none
-      animationSpeed: 300,                    // how fast animtions are
-      closeOnBackgroundClick: true,           // if you click background will modal close?
-      dismissModalClass: 'close-reveal-modal' // the class of a button or element that will close an open modal
+      animation: 'fadeAndPop',                 // fade, fadeAndPop, none
+      animationSpeed: 300,                     // how fast animtions are
+      closeOnBackgroundClick: true,            // if you click background will modal close?
+      dismissModalClass: 'close-reveal-modal', // the class of a button or element that will close an open modal
+      afterOpen: $.noop                        // callback function
     };
     var options = $.extend({}, defaults, options);
 
@@ -46,19 +47,19 @@
             modal.delay(options.animationSpeed / 2).animate({
               "top": $(document).scrollTop() + topMeasure + 'px',
               "opacity": 1
-            }, options.animationSpeed, unlockModal);
+            }, options.animationSpeed, onOpen);
           }
           if (options.animation == "fade") {
             modal.css({'opacity': 0, 'visibility': 'visible', 'top': $(document).scrollTop() + topMeasure});
             modalBg.fadeIn(options.animationSpeed / 2);
             modal.delay(options.animationSpeed / 2).animate({
               "opacity": 1
-            }, options.animationSpeed, unlockModal);
+            }, options.animationSpeed, onOpen);
           }
           if (options.animation == "none") {
             modal.css({'visibility': 'visible', 'top': $(document).scrollTop() + topMeasure});
             modalBg.css({"display": "block"});
-            unlockModal();
+            onOpen();
           }
         }
         modal.unbind('reveal:open', openAnimation);
@@ -113,6 +114,11 @@
           modal.trigger('reveal:close');
         }
       });
+
+      function onOpen() {
+        unlockModal();
+        options.afterOpen(this);
+      }
 
       function unlockModal() {
         locked = false;
