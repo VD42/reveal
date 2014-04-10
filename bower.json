@@ -7,7 +7,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/VD42/reveal.git"
+        "url": "git://github.com/VD42/reveal.git"
     },
     "keywords": [
         "reveal"
