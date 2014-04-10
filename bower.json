@@ -12,5 +12,8 @@
     "keywords": [
         "reveal"
     ],
-    "main": "./jquery.reveal.js"
+    "main": "./jquery.reveal.js",
+    "dependencies": {
+        "jquery": ">= 1.7.0"
+    }
 }
