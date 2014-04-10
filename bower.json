@@ -1,6 +1,6 @@
 {
     "name": "vd42-reveal",
-    "version": "1.0.1",
+    "version": "1.0.1-fix1",
     "description": "Reveal: A jQuery Plugin For Modals",
     "homepage": "http://zurb.com/playground/reveal-modal-plugin",
     "author": "zurb <https://github.com/zurb>",
@@ -15,5 +15,8 @@
     "main": "./jquery.reveal.js",
     "dependencies": {
         "jquery": ">= 1.7.0"
-    }
+    },
+    "ignore": [
+        "README.markdown"
+    ]
 }
